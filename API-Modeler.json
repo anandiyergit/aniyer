@@ -1,0 +1,381 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.9.0",
+    "title": "API-Modeler",
+    "x-lastModified": "Apr 15, 2017 12:21PM PST"
+  },
+  "paths": {
+    "/apis": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/GiveNewSchemaNameHere"
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": "integer",
+                  "organizationID": "string",
+                  "name": "string",
+                  "version": "string",
+                  "description": "string",
+                  "host": "string",
+                  "basePath": "string",
+                  "timeCreate": "string",
+                  "timeUpdate": "string",
+                  "timeDelete": "string",
+                  "group": "string"
+                }
+              ]
+            }
+          },
+          "404": {
+            "description": "Resource(s) not found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            },
+            "examples": {
+              "application/json": {
+                "errorCode": "string",
+                "errorMsg": "string"
+              }
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of the API Specification",
+            "required": false,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Version of the API Specification",
+            "required": false,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "X-Atmosphere-Token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "description": "Lists all the APIs."
+      },
+      "post": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response"
+          }
+        },
+        "parameters": [],
+        "description": "Creates a New API Specification. Given a swagger specification in JSON format, the API Specification is validated and persisted."
+      }
+    },
+    "/apis/{apiid}/content": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Resource(s) Not Found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Internal Server Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Atmosphere-Token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "apiid",
+            "in": "path",
+            "description": "Identifier of the API Specification",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "description": "Fetches the JSON content of the API Specification given an ID(Identifier) of the API Specification."
+      },
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/GiveNewSchemaNameHere"
+            },
+            "examples": {
+              "application/json": {
+                "id": "string",
+                "name": "string",
+                "version": "string",
+                "description": "string",
+                "timeCreate": "string",
+                "timeUpdate": "string",
+                "contentId": "string",
+                "group": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Resource(s) Not Found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Internal Server Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Atmosphere-Token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": false,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "apiid",
+            "in": "path",
+            "description": "Identifier(ID) of the API Specification",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "description": "Overwrites an existing API."
+      }
+    },
+    "/apis/{apiid}": {
+      "put": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "$ref": "#/definitions/GiveNewSchemaNameHere"
+            }
+          },
+          "404": {
+            "description": "Resource(s) Not Found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Internal Server Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "X-Atmosphere-Token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "apiid",
+            "in": "path",
+            "description": "Identifier(ID) of the API Specification",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "description": "Renaming the API Specification Name"
+      }
+    },
+    "/api/content": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "404": {
+            "description": "Resource(s) Not Found",
+            "schema": {
+              "$ref": "#/definitions/Resource Not Found"
+            }
+          },
+          "500": {
+            "description": "Unexpected Error",
+            "schema": {
+              "$ref": "#/definitions/Internal Server Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name of the API Specification",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Version of the API Specification",
+            "required": true,
+            "type": "string",
+            "format": ""
+          },
+          {
+            "name": "X-Atmosphere-Token",
+            "in": "header",
+            "description": "Authentication Token",
+            "required": true,
+            "type": "string",
+            "format": ""
+          }
+        ],
+        "description": "Fetches the JSON Content of an API Specification given a name and version of the respective API Specifcation."
+      }
+    }
+  },
+  "definitions": {
+    "Model Schema": {
+      "errorCode": "string",
+      "errorMsg": "string"
+    },
+    "Internal Server Error": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string",
+          "default": "string"
+        },
+        "errorMsg": {
+          "type": "string",
+          "default": "string"
+        }
+      }
+    },
+    "GiveNewSchemaNameHere": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "default": "integer"
+          },
+          "name": {
+            "type": "string",
+            "default": "string"
+          },
+          "version": {
+            "type": "string",
+            "default": "string"
+          },
+          "description": {
+            "type": "string",
+            "default": "string"
+          },
+          "host": {
+            "type": "string",
+            "default": "string"
+          },
+          "basePath": {
+            "type": "string",
+            "default": "string"
+          },
+          "timeCreate": {
+            "type": "string",
+            "default": "string"
+          },
+          "timeUpdate": {
+            "type": "string",
+            "default": "string"
+          },
+          "timeDelete": {
+            "type": "string",
+            "default": "string"
+          },
+          "group": {
+            "type": "string",
+            "default": "string"
+          }
+        }
+      }
+    },
+    "Resource Not Found": {
+      "type": "object",
+      "properties": {
+        "errorCode": {
+          "type": "string",
+          "default": "string"
+        },
+        "errorMsg": {
+          "type": "string",
+          "default": "string"
+        }
+      }
+    }
+  }
+}
